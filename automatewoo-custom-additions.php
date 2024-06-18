@@ -17,8 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Prevent direct access
 }
 
-
-add_filter( 'automatewoo/triggers', 'custom_triggers' );
+add_filter( 'automatewoo/triggers', __NAMESPACE__ . '\\custom_triggers' );
 
 /**
  * @param array $triggers
@@ -32,16 +31,4 @@ function custom_triggers( $triggers ) {
 	$triggers['Subscription shipping address update'] = 'Subscription_Shipping_Address_Update';
 
 	return $triggers;
-}
-
-add_filter('automatewoo/rules/includes', 'custom_rules' );
-
-/**
- * @param array $rules
- * @return array
- */
-function custom_rules( $rules ) {
-
-	$rules['custom_shipping_line_rule'] = dirname(__FILE__) . '/includes/rules/class-subscription-shipping-line-rule.php'; // absolute path to rule
-	return $rules;
 }
