@@ -45,10 +45,3 @@ function custom_rules( $rules ) {
 	$rules['custom_shipping_line_rule'] = dirname(__FILE__) . '/includes/rules/class-subscription-shipping-line-rule.php'; // absolute path to rule
 	return $rules;
 }
-
-add_action( 'automatewoo_init_addons', 'load_required_files' );
-
-function load_required_files(){
-	require_once dirname( __FILE__ ) . '/includes/variables/Subscription_Renewal_Confirmation_Link.php';
-	require_once dirname( __FILE__ ) . '/includes/triggers/class-membership-before-expiry.php';
-}
