@@ -9,5 +9,17 @@ Fires when a Subscription shipping address is updated
 
 ### Rules
 
-#### Subscription Shipping total
-Allows comparisons against the existing subscription shipping total. Might be used with the Subscription Shipping Address update trigger.
+#### Order Shipping total
+Allows comparisons against the existing order shipping total.
+
+#### Subscription shipping total
+Allows comparisons against the subscription shipping tota.
+
+### Variables
+
+### order.shipping_total
+Exposes the order shipping total
+
+### subscription.shipping_total
+Exposes the subscription shipping total
+

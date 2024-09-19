@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Order_Shipping_Total_Variable
  *
- * @package AutomateWoo\Birthdays
+ * @package AutomateWoo\CustomAdditions
  */
 class Order_Shipping_Total_Variable extends Variable_Abstract_Price {
 
@@ -22,13 +22,13 @@ class Order_Shipping_Total_Variable extends Variable_Abstract_Price {
 
 		parent::load_admin_details();
 
-		$this->description = __( "Shows the order shipping total", 'automatewoo-custom-additions' ) . ' ' . $this->_desc_format_tip;
+		$this->description = __( "Shows the order shipping total", 'automatewoo-custom-additions' );
 	}
 
 	/**
 	 * Get variable value.
 	 *
-	 * @param \AutomateWoo\Order $order
+	 * @param \WC_Order $order
 	 * @param array $parameters
 	 *
 	 * @return string|bool

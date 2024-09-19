@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Custom_Additions {
 
 	/**
-	 * Menu The instance of AW_Custom_Var_Shipping_Total
+	 * Menu The instance of Custom_Additions
 	 *
 	 * @var    object
 	 * @access private
@@ -28,11 +28,11 @@ class Custom_Additions {
 	private static object $instance;
 
 	/**
-	 * Main Menu Instance
+	 * Custom_Additions Instance
 	 *
-	 * Ensures only one instance of Menu is loaded or can be loaded.
+	 * Ensures only one instance of Custom_Additions is loaded or can be loaded.
 	 *
-	 * @return  AW_Custom_Var_Shipping_Total instance
+	 * @return  Custom_Additions instance
 	 * @since  1.0.0
 	 * @static
 	 */
@@ -61,6 +61,7 @@ class Custom_Additions {
 	 */
 	public function register_rules( $rules ) {
 		$rules['order_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/order-shipping-total-rule.php';
+		$rules['subscription_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-shipping-total-rule.php';
 
 		return $rules;
 	}
@@ -75,6 +76,7 @@ class Custom_Additions {
 	public function register_variables( $vars ) {
 
 		$vars['order']['shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/variables/order-shipping-total-variable.php';
+		$vars['subscription']['shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/variables/subscription-shipping-total-variable.php';
 
 		return $vars;
 	}

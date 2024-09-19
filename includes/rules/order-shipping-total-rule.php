@@ -25,7 +25,7 @@ class Order_Shipping_Total_Rule extends Rules\Abstract_Number {
 
 
 	/**
-	 * @param $customer \AutomateWoo\Order
+	 * @param $customer \WC_Order
 	 * @param $compare
 	 * @param $value
 	 * @return bool
