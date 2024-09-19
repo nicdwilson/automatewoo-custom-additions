@@ -1,34 +1,97 @@
 <?php
 /**
  * Plugin Name: AutomateWoo Custom Additions
- * Plugin URI:
+ * Plugin URI: https://github.com/nicdwilson/automatewoo-custom-additions
  * Description: Adds a trigger when subscription shipping addresses are updated, and a subscription shipping total rule.
  * Version: Beta
  * Author: nicw
  * Author URI:
+ * Requires Plugins: woocommerce, automatewoo
  *
 */
 
 namespace AutomateWoo\CustomAdditions;
 
-use AutomateWoo\Integrations;
-
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Prevent direct access
+	exit;
 }
 
-add_filter( 'automatewoo/triggers', __NAMESPACE__ . '\\custom_triggers' );
+class Custom_Additions {
 
-/**
- * @param array $triggers
- * @return array
- */
-function custom_triggers( $triggers ) {
+	/**
+	 * Menu The instance of AW_Custom_Var_Shipping_Total
+	 *
+	 * @var    object
+	 * @access private
+	 * @since  1.0.0
+	 */
+	private static object $instance;
 
-	include_once plugin_dir_path( __FILE__ ) . '/includes/triggers/class-subscription-shipping-address-update.php';
+	/**
+	 * Main Menu Instance
+	 *
+	 * Ensures only one instance of Menu is loaded or can be loaded.
+	 *
+	 * @return  AW_Custom_Var_Shipping_Total instance
+	 * @since  1.0.0
+	 * @static
+	 */
+	public static function instance(): object {
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
 
-	// set a unique name for the trigger and then the class name
-	$triggers['Subscription shipping address update'] = 'Subscription_Shipping_Address_Update';
+		return self::$instance;
+	}
 
-	return $triggers;
+	public function __construct() {
+
+		add_filter( 'automatewoo/rules/includes', array( $this, 'register_rules' ) );
+		add_filter( 'automatewoo/variables', array( $this, 'register_variables' ) );
+		add_filter( 'automatewoo/triggers', array( $this, 'register_triggers' ) );
+	}
+
+
+	/**
+	 * Register rules.
+	 *
+	 * @param array $rules
+	 *
+	 * @return array
+	 */
+	public function register_rules( $rules ) {
+		$rules['order_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/order-shipping-total-rule.php';
+
+		return $rules;
+	}
+
+	/**
+	 * Register variables.
+	 *
+	 * @param array $vars
+	 *
+	 * @return array
+	 */
+	public function register_variables( $vars ) {
+
+		$vars['order']['shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/variables/order-shipping-total-variable.php';
+
+		return $vars;
+	}
+
+	/**
+	 * @param array $triggers
+	 * @return array
+	 */
+	function register_triggers( $triggers ) {
+
+		include_once plugin_dir_path( __FILE__ ) . '/includes/triggers/class-subscription-shipping-address-update.php';
+
+		// set a unique name for the trigger and then the class name
+		$triggers['Subscription shipping address update'] = 'Subscription_Shipping_Address_Update';
+
+		return $triggers;
+	}
 }
+
+add_action( 'plugins_loaded', array( 'AutomateWoo\CustomAdditions\Custom_Additions', 'instance' ) );
