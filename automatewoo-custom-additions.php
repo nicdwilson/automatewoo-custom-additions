@@ -3,7 +3,7 @@
  * Plugin Name: AutomateWoo Custom Additions
  * Plugin URI: https://github.com/nicdwilson/automatewoo-custom-additions
  * Description: Adds a trigger when subscription shipping addresses are updated, and a subscription shipping total rule.
- * Version: Beta
+ * Version: 1.1
  * Author: nicw
  * Author URI:
  * Requires Plugins: woocommerce, automatewoo
@@ -92,6 +92,7 @@ class Custom_Additions {
 	public function register_rules( $rules ) {
 		$rules['order_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/order-shipping-total-rule.php';
 		$rules['subscription_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-shipping-total-rule.php';
+		$rules['subscription_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-total-rule.php';
 
 		return $rules;
 	}
