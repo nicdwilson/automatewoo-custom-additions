@@ -12,8 +12,12 @@ Fires when a Subscription shipping address is updated
 #### Order Shipping total
 Allows comparisons against the existing order shipping total.
 
+#### Subscription total
+Allows comparisons against the subscription total.
+
 #### Subscription shipping total
-Allows comparisons against the subscription shipping tota.
+Allows comparisons against the subscription shipping total.
+
 
 ### Variables
 
