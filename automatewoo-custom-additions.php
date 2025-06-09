@@ -69,6 +69,7 @@ class Custom_Additions {
 		$rules['subscription_shipping_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-shipping-total-rule.php';
 		$rules['subscription_total'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-total-rule.php';
 		$rules['order_billing_email'] = plugin_dir_path( __FILE__ ) . 'includes/rules/order-billing-email-rule.php';
+		$rules['subscription_billing_email'] = plugin_dir_path( __FILE__ ) . 'includes/rules/subscription-billing-email-rule.php';
 
 		return $rules;
 	}
